@@ -13,6 +13,12 @@
     visibility: hidden;
     //display: none;
     transition: all .3s;
+    
+    @supports(-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)){
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba($color-black, .3);
+    }
 
     //target when someone click (we defined id = popup i dalismy do buttonow)
     //as soon as we click book now button, the #popup from button is added to url, and #popup becomes a target

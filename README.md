@@ -4,3 +4,9 @@ The website is designed by Jonas Schmedtmann and this repository content is a re
 
 Course: Advanced CSS and Sass: Flexbox, Grid, Animations and More!
 https://www.udemy.com/advanced-css-and-sass/
+
+To run: 
+npm run start
+
+To generate compress css code:
+npm run build:css

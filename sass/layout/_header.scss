@@ -1,12 +1,12 @@
 
 .header {
-    height: 95vh; /*Relative to 1% of the height of the viewport. Viewport = the browser window size. 
+    height: 85vh; /*Relative to 1% of the height of the viewport. Viewport = the browser window size. 
             If the viewport is 50cm wide, 1vw = 0.5cm. Teraz na dole jest biale troche*/
     background-image: linear-gradient(
         to right bottom,
         rgba($color-primary-light, 0.8), 
         rgba($color-primary-dark, 0.8)), 
-        url(../img/hero.jpg);
+        url(../img/hero-small.jpg);
     background-size: cover; /*zdjecie zawsze bedzie szerokosci viewportu*/
     background-position: top; /*zdjecie zawsze jest na gorze kontenera przylepione, 
             czyli jak sie zmienia szerokosc strony to dol moze byc ucinany, ale gora nigdy
@@ -15,6 +15,22 @@
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /*robienie z obrazka innej figury, 
             piszemy po kolei gdzie ma być miejsce zgiecia, mozna ile sie chce tych zgiec miec*/
     position: relative;
+
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
+        height: 95vh;
+    }
+
+    @media (min-resolution: 192dpi) and (min-width: 37,5em), 
+        (-webkit-min-device-pixel-ratio: 2) and (min-width: 37,5em),  //dla safari, 2 = 2x 
+        (min-width: 125em) { //600px = 37,5em, 2000px = 125em
+        background-image: linear-gradient(
+            to right bottom,
+            rgba($color-secondary-light, 0.8), 
+            rgba($color-secondary-dark, 0.8)), 
+            url(../img/hero.jpg);
+    }
 
     @include respond(phone) {
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);

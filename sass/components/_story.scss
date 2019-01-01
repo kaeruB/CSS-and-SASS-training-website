@@ -20,12 +20,23 @@
         height: 15rem;
         // background-color: orangered;
         float: left;
-        -webkit-shape-outside: circle(50% at 50% 50%); //dla safari
-        shape-outside: circle(50% at 50% 50%); //musi byc float, ale float wymaga height i width
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%); //tekst bedzie wokol kola 
+        border-radius: 50%;
+        
         transform: translateX(-3rem) skewX(12deg);
         position: relative; //dla caption
+        overflow: hidden;
+
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%); //tekst bedzie wokol kola 
+            -webkit-shape-outside: circle(50% at 50% 50%); //dla safari
+            shape-outside: circle(50% at 50% 50%); //musi byc float, ale float wymaga height i width
+            border-radius: none;
+        }
+        
+        @include respond(phone) {
+            transform: translateX(-3rem) skewX(0);
+        }
     }
 
     &__img {
