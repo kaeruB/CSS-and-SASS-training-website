@@ -1,0 +1,101 @@
+
+.btn {
+    &,
+    /*:link - link sudo class, special state of selector, used to style a button in special conditions */
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block; /* teraz juz nie jest zwyklym tekstem i nie najezdza na napis powyzej */
+        /* https://www.w3schools.com/css/tryit.asp?filename=trycss_inline-block_span1 */
+        border-radius: 6rem;
+        transition: all .2s;
+        position: relative;
+        font-size: $default-font-size;
+
+        //change for the button element
+        border: none;
+        cursor: pointer;
+    }
+
+    /* a:active MUST come after a:hover */
+    &:hover {
+        transform: translateY(-3px); /* y jest skierowana w dol, jak chcemy do gory to trza minus dac */
+        box-shadow: 0 1rem 2rem rgba($color-black,.2); /* 10px - jak bardzo ma byc blurry, .5 jak bardzo przezroczysty kolor */
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6); /*2 -  double the size */
+            opacity: 0; /* ma znikac */
+        }
+    }
+
+    &:active,
+    &:focus {
+        outline: none;
+        transform: translateY(-1px); /*jak klikamy to troche w dol idzie */
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+
+    &::after {
+        /* zeby pseudo element pojawil sie na stronie trzeba zdefiniowac content */
+        content: "";
+        display: inline-block; /* chcemy zeby wygladal tak jak btn */
+        height: 100%; /* 100% wysokosci buttona-"parenta" */
+        width: 100%;
+        border-radius: 6rem;
+        position: absolute; /* szuka najblizszego relative position elementu, dodany do .btn:visited, bo chcemy schowac za przyciskiem to cos*/
+        top: 0;
+        left: 0;
+        z-index: -1; /*ma byc za buttonem */
+        transition: all .4s; /* transition dodajemy zawsze do guzika - parenta, tutaj powiekszenie jest przez 0.4 s */
+    }
+
+    &--animated {
+        animation: moveInBottom .7s ease-out .75s; /* .75s animation opoznienie */
+        animation-fill-mode: backwards; /* zeby dopiero sie pojawil po .75s, daje styles 0% zanim sie zacznie animacja moveInBottom*/
+    }
+}
+
+.btn-text {
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none; //no underlining
+        border-bottom: 1px solid $color-primary;
+        padding: 3px;
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black,.15);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,100 @@
+.popup {
+    height: 100vh;
+    width: 100%;   
+    background-color: rgba($color-black, .8); 
+   
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 9999;
+    
+    opacity: 0;
+    visibility: hidden;
+    //display: none;
+    transition: all .3s;
+
+    //target when someone click (we defined id = popup i dalismy do buttonow)
+    //as soon as we click book now button, the #popup from button is added to url, and #popup becomes a target
+    //since class popup has an id popup, the target becomes the entire element called popup
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            line-height: 1rem;
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+
+    &__content {
+        @include absCenter;
+
+        width: 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: 3px;
+        display: table; //wiaze sie z table-cell, browser da im ta sama wysokosc (rightowi i leftowi)
+        overflow: hidden; //zeby kawalek obrazka nie wystawal z boxa
+
+        opacity: 0;
+        transform: translate(-50%, -50%), scale(.5);
+        transition: all .5s .2s;
+    }
+
+    //the popup becomes the target, we want to scale it 
+    &:target &__content {
+        opacity: 1;
+        transform: translate(-50%, -50%), scale(1);
+
+    }
+
+    &__left {
+        width: 33.333333%;
+        display: table-cell;
+    }
+
+    &__right {
+        width: 66.6666667%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+    }
+
+    &__text {
+        font-size: 1.4rem; //1em = 14px, bo jest rowny fon-size'owi
+        margin-bottom: 4rem;
+
+        -moz-column-count: 2; //tworzy dwie kolumny z tekstu
+        -moz-column-gap: 4rem; //space between columns
+        -moz-column-rule: 1px solid $color-grey-light-2;
+
+        column-count: 2; //tworzy dwie kolumny z tekstu
+        column-gap: 4rem; //space between columns
+        column-rule: 1px solid $color-grey-light-2;
+
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto; //wymaga ustawienia jezyka 
+    }
+}

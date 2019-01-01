@@ -1,0 +1,40 @@
+//partial sass file
+
+
+/* sama * nie obejmuje pseudo elementow takich jak after i before */
+*, 
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+   box-sizing: inherit; /* wymuszenie dziedziczenia dla danego property - w body jest box-sizing, a tu dla kazdego elementu dajemy inherit */
+}
+
+html {
+    /* percentage of a font-size given by the browser, default is 16px if user doesn't change anything */ 
+    /* chcielismy miec 10px jako default, wiec 10/16 * 100% bierzemy */
+    /*font-size: 10px;  teraz 1rem = 10px, ale jak ktos sobie ustawi w przegladarce font-size no to zginiemy */
+    font-size: 62.5%; //defines what 1rem is
+    //1rem = 10px; => 10px/16px = 62.5%
+
+    @include respond(big-desktop) {
+        font-size: 75%; //1rem = 12, 12/16
+    }
+
+    @include respond(tab-land) {
+        font-size: 56.25%;  //1rem = 9px, 9/16 = 50%
+    }
+
+    @include respond(tab-port) {
+        font-size: 50%;    //1 rem = 8px, 8/16 = 50%
+    }    
+}
+
+body {
+    box-sizing: border-box;
+    padding: 3rem;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }  
+}

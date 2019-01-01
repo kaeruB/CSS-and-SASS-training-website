@@ -1,0 +1,53 @@
+
+/*block elements occupy the entire lengdth and have breaks between*/
+
+@keyframes moveInLeft {
+    /* przegladarki sa zoptymalizowane na zmiany opacity i transform */
+    /* czas poczatkowy */
+    0% {
+        opacity: 0; /* invisible */
+        transform: translateX(-10rem) rotate(-50deg); /* minus bo w lewo po osi x */
+    }
+
+    60% {
+        transform: rotate(120deg);
+    }
+
+    80% {
+        transform: translateX(2rem);
+    }
+
+    /* czas koncowy */
+    100% {
+        opacity: 1;
+        transform: translate(0); 
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0; 
+        transform: translateX(10rem); 
+    }
+
+    80% {
+        transform: translateX(-2rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0); 
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0; 
+        transform: translateY(2rem); 
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0); 
+    }
+}

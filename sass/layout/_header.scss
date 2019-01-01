@@ -1,0 +1,48 @@
+
+.header {
+    height: 95vh; /*Relative to 1% of the height of the viewport. Viewport = the browser window size. 
+            If the viewport is 50cm wide, 1vw = 0.5cm. Teraz na dole jest biale troche*/
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8), 
+        rgba($color-primary-dark, 0.8)), 
+        url(../img/hero.jpg);
+    background-size: cover; /*zdjecie zawsze bedzie szerokosci viewportu*/
+    background-position: top; /*zdjecie zawsze jest na gorze kontenera przylepione, 
+            czyli jak sie zmienia szerokosc strony to dol moze byc ucinany, ale gora nigdy
+            moze byc jeszcze bottom albo center*/
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /*robienie z obrazka innej figury, 
+            piszemy po kolei gdzie ma być miejsce zgiecia, mozna ile sie chce tych zgiec miec*/
+    position: relative;
+
+    @include respond(phone) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+
+    &__logo-box {
+        position: absolute;
+        top: 4rem; /*liczymy 40px od elementu bedacego rodzicem, ktory ma ustawione position na relative*/
+        left: 4rem;
+        //background-image: linear-gradient(to right bottom, rgba(251, 239, 204, 0.856), rgba(244, 167, 136, 0.808));
+    }
+
+    &__logo {
+        height: 3.5rem; /*width bedzie kontrolowane przez przegladarke, wiec go nie podajemy. mozna tez podac width i nie podac height*/
+    }
+
+    &__logo:hover {
+        animation: moveInRight 3s ease-out;
+
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 40%; /*lewy gorny rog jest w polowie obrazka w pionie, obrazek w pionie to parent dla text-boxa*/
+        left: 50%; /*lewy gorny rog jest w polowie obrazka w poziomie */
+        transform: translate(-50%, -50%); /*przesuwamy srodek w miejsce gornego lewego rogu*/
+        text-align: center; /* dzieki temu przycisk discover our tours jest na srodku */
+    }
+    
+}
